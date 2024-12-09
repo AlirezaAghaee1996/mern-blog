@@ -3,7 +3,8 @@
     err.status=err.status||'error'  
     res.status(err.statusCode).json({
         status:err.status,
-        message:err.message
+        message:err.message,
+        success:false
     })
 }
 export default catchError
