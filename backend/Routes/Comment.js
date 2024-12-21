@@ -1,5 +1,5 @@
 import express from 'express'
-import { isAdmin } from '../Middleware/isAdmin.js'
+import  isAdmin  from '../Middleware/isAdmin.js'
 import { changeActiveComment, createComment, deleteComment, getAllComments, getCommentsPost, getOneComment } from '../Controllers/CommentCn.js'
 import isLogin from '../Middleware/isLogin.js'
 const commentRouter=express.Router()
