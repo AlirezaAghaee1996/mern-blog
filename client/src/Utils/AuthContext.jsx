@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 
 // Create the AuthContext
-const AuthContext = createContext();
+export  const AuthContext = createContext();
 
 // Create a provider component
 const AuthProvider = ({ children }) => {
@@ -20,4 +20,4 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export { AuthContext, AuthProvider };
+export default AuthProvider

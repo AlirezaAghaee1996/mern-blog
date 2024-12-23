@@ -5,4 +5,6 @@ import Home from "./Home";
 import NotFound from "./NotFound";
 import Posts from "./Posts";
 import PostDetails from "./PostDetails";
-export {Home,PostDetails,Posts,NotFound,Auth,Register,Login}
+
+import Profile from "./Profile";
+export {Home,PostDetails,Posts,NotFound,Auth,Register,Login,Profile}
