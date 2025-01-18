@@ -17,32 +17,32 @@ export default function Navbar() {
   }, []);
 
   const items = categories?.map((e, index) => (
-    <li key={index} className="hover:text-yellow-400 transition duration-200">
+    <li key={index} className="hover:text-[#DCD7C9] transition duration-200">
       <Link to={`/posts/${e._id}/${e.title.replaceAll(" ", "-")}`}>{e.title}</Link>
     </li>
   ));
 
   return (
-    <nav className="bg-gray-900 text-white shadow-md">
+    <nav className="bg-[#2C3639] text-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-yellow-400">
+        <Link to="/" className="text-2xl font-bold text-[#DCD7C9]">
           Rokad Blog
         </Link>
 
         {/* Navigation Links */}
         <ul className="hidden md:flex space-x-8 items-center">
-          <li className="hover:text-yellow-400 transition duration-200">
+          <li className="hover:text-[#DCD7C9] transition duration-200">
             <Link to="/">Home</Link>
           </li>
-          <li className="hover:text-yellow-400 transition duration-200">
+          <li className="hover:text-[#DCD7C9] transition duration-200">
             <Link to="/posts/all/all-category">Posts</Link>
           </li>
           <li className="relative group">
-            <span className="cursor-pointer hover:text-yellow-400 transition duration-200">
+            <span className="cursor-pointer hover:text-[#DCD7C9] transition duration-200">
               Categories
             </span>
-            <ul className="absolute hidden group-hover:block bg-gray-800 text-sm rounded shadow-lg mt-2 py-2">
+            <ul className="absolute hidden group-hover:block bg-[#2C3639] text-sm rounded shadow-lg mt-2 py-2">
               {items?.length ? (
                 items
               ) : (
@@ -51,11 +51,11 @@ export default function Navbar() {
             </ul>
           </li>
           {token ? (
-            <li className="hover:text-yellow-400 transition duration-200">
+            <li className="hover:text-[#DCD7C9] transition duration-200">
               <Link to="/profile">Profile</Link>
             </li>
           ) : (
-            <li className="hover:text-yellow-400 transition duration-200">
+            <li className="hover:text-[#DCD7C9] transition duration-200">
               <Link to="/auth">Login/Register</Link>
             </li>
           )}
@@ -66,13 +66,13 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="Search For Anything..."
-            className="px-4 py-2 w-64 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="px-4 py-2 w-64 bg-[#2C3639] text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button className="text-yellow-400 focus:outline-none">
+          <button className="text-[#DCD7C9] focus:outline-none">
             <i className="fas fa-bars text-2xl"></i>
           </button>
         </div>
@@ -80,19 +80,19 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div className="md:hidden">
-        <ul className="bg-gray-800 space-y-2 p-4 text-sm">
+        <ul className="bg-[#2C3639] space-y-2 p-4 text-sm">
           <li>
-            <Link to="/" className="block hover:text-yellow-400">
+            <Link to="/" className="block hover:text-[#DCD7C9]">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/posts/all/all-category" className="block hover:text-yellow-400">
+            <Link to="/posts/all/all-category" className="block hover:text-[#DCD7C9]">
               Posts
             </Link>
           </li>
           <li className="block">
-            <span className="block hover:text-yellow-400">Categories</span>
+            <span className="block hover:text-[#DCD7C9]">Categories</span>
             <ul className="pl-4 space-y-1">
               {items?.length ? (
                 items
@@ -103,13 +103,13 @@ export default function Navbar() {
           </li>
           {token ? (
             <li>
-              <Link to="/profile" className="block hover:text-yellow-400">
+              <Link to="/profile" className="block hover:text-[#DCD7C9]">
                 Profile
               </Link>
             </li>
           ) : (
             <li>
-              <Link to="/auth" className="block hover:text-yellow-400">
+              <Link to="/auth" className="block hover:text-[#DCD7C9]">
                 Login/Register
               </Link>
             </li>
