@@ -1,15 +1,21 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Layout } from './Components';
 import { Home,Login,NotFound,UpdatePosts,CreatePost,GetAllPost,Posts,Comments,Categories,UpdateCategory,CreateCategory,GetAllCategories,Users,UpdateUser,GetAllUsers} from './Pages';
+import { AuthContext } from './Utils/AuthContext';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
+  const {token,user}=useContext(AuthContext)
+  if(!token || user?.role!='admin'){
+    return <Login/>
+  }
   return (
+    <>
     <Routes>
       {/* Wrap all routes with the Layout component */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} /> {/* Home route */}
-        <Route path="/login" element={<Login />} />
         <Route path="/comments" element={<Comments />} />
         <Route path="/posts" element={<Posts />}>
           <Route path="" element={<GetAllPost />} /> {/* Matches /posts */}
@@ -28,6 +34,8 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
+    <Toaster/>
+    </>
   );
 };
 

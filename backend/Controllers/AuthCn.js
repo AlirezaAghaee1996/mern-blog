@@ -32,6 +32,7 @@ export const login =catchAsync(async(req,res,next)=>{
     const token=jwt.sign({id:user._id,role:user.role},process.env.JWT_SECRET)
     return res.status(200).json({
         message:'login successfully',
+        success:true,
         data:{
             token,
             user:{
