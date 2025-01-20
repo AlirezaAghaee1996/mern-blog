@@ -1,19 +1,35 @@
 import React, { useState } from 'react';
 import useFormFields from '../../../Utils/useFormFields';
 import fetchData from '../../../Utils/fetchData';
+import { useContext } from 'react';
+import { AuthContext } from '../../../Utils/AuthContext';
+import notify from '../../../Utils/notify';
+import { useNavigate } from 'react-router-dom';
 
 const CreateCategory = () => {
  const [errors,setErrors]=useState('')
   const [fields,handleChange]=useFormFields()
   const [loading,setLoding]=useState(false)
+  const {token}=useContext(AuthContext)
+  const navigate=useNavigate()
   const handleSubmit = async(e) => {
       e.preventDefault()
       const response=await fetchData('categories',{
         method:'POST',
         headers:{
-          
-        }
+            'authorization':`brear ${token}`,
+            "content-type":'application/json'
+        },
+        body:JSON.stringify(fields)
+
       })
+      if(response.success){
+        notify(response.message,'success')
+        navigate('/categories')
+      }else{
+        notify(response.message,'error')
+
+      }
   };
 
   return (

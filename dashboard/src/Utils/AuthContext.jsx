@@ -5,12 +5,19 @@ export  const AuthContext = createContext();
 
 // Create a provider component
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
+  const data=JSON.parse(localStorage.getItem('auth'))
+  const [token, setToken] = useState(data?.token);
+  const [user, setUser] = useState(data?.user);
 
   const handleAuth = (newToken,newUser) => {
-    setToken(newToken);
-    setUser(newUser)
+    if(newToken && newUser){
+      setToken(newToken);
+      setUser(newUser)
+      localStorage.setItem('auth',JSON.stringify({user:newUser,token:newToken}))
+    }else{
+      localStorage.clear()
+    }
+
   };
 
   return (
