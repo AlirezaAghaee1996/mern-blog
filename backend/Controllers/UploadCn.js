@@ -9,6 +9,7 @@ export const uploadCn = catchAsync(async (req, res, next) => {
     return next(new HandleError("UPLOAD failed", 400));
   }
   return res.status(201).json({
+    success:true,
     file: file,
   });
 });

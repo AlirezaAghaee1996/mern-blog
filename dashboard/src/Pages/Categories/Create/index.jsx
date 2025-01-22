@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useFormFields from '../../../Utils/useFormFields';
 import fetchData from '../../../Utils/fetchData';
 import { useContext } from 'react';
@@ -11,6 +11,7 @@ const CreateCategory = () => {
   const [fields,handleChange]=useFormFields()
   const [loading,setLoding]=useState(false)
   const {token}=useContext(AuthContext)
+  
   const navigate=useNavigate()
   const handleSubmit = async(e) => {
       e.preventDefault()

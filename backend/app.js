@@ -10,12 +10,19 @@ import commentRouter from './Routes/Comment.js'
 import categoryRouter from './Routes/Category.js'
 import uploadRouter from './Routes/upload.js'
 import cors from 'cors'
-const app=express()
+
+
+
+
+
 const __filename=fileURLToPath(import.meta.url)
 export const __dirname=path.dirname(__filename)
+
+const app=express()
+
 app.use(cors())
 app.use(express.json())
-app.use(express.static(__dirname+'Public'))
+app.use(express.static('Public'))
 app.use('/api/posts',postRouter)
 app.use('/api/auth',authRouter)
 app.use('/api/users',userRouter)
