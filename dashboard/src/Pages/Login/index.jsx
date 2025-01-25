@@ -26,9 +26,15 @@ const Login = () => {
       });
       console.log(response)
       if (response.success) {
-        notify(response.message,'success');
+        if(response.data.user.role!=='admin'){
+          notify('you dont have permission','error');
+
+        }else{
+          notify(response.message,'success');
         handleAuth(response.data.token,response.data.user)
         navigate('/')
+        }
+        
       } else {
         setError(response.message || 'Invalid username or password');
       }

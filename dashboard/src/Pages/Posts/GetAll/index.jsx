@@ -1,32 +1,50 @@
 import React, { useEffect, useState } from "react";
 import fetchData from "../../../Utils/fetchData";
+import { useNavigate } from "react-router-dom";
+import notify from "../../../Utils/notify";
 
 export default function GetAllPost() {
   const [posts, setPosts] = useState();
+  const navigate=useNavigate()
   useEffect(() => {
     (async () => {
       const response = await fetchData("posts?populate=categoryId");
       setPosts(response.data);
     })();
   }, []);
-  const handleDelete=(id)=>{
-
-  }
-  const items = posts?.map((e, index) => (
-    <tr key={index} className="hover:bg-gray-200 even:bg-gray-50">
-      <td className="py-2 px-4 text-center border-b">{e?.title}</td>
+  const handleDelete=async (id) => {
+    const response = await fetchData(`posts/${id}`,{
+      method:'DELETE',
+      headers:{
+          'authorization':`brear ${token}`,
+          "content-type":'application/json'
+      }
+    })
+    if (response.success) {
+      notify(response.message,'success')
+      const newPost=posts.filter(e=>e._id!=id)
+      setPosts(newPost)
+    }
+  };
+  const items = posts?.map((post, index) => (
+    <tr key={index} onClick={(e)=>{
+      if(!e.target.closest('.deleteBtn')){
+        navigate(`/posts/${post._id}`)
+      }
+    }} className="hover:bg-gray-200 even:bg-gray-50">
+      <td className="py-2 px-4 text-center border-b">{post?.title}</td>
       <td className="py-2 px-4 text-center border-b">
         <img
-          src={import.meta.env.VITE_BASE_FILE+e?.images[0]}
-          alt={e.title}
+          src={import.meta.env.VITE_BASE_FILE+post?.images[0]}
+          alt={post.title}
           className="w-[60px] block mx-auto h-[60px] rounded"
         />
       </td>
-      <td className="py-2 px-4 text-center border-b">{e?.categoryId?.title}</td>
+      <td className="py-2 px-4 text-center border-b">{post?.categoryId?.title}</td>
       <td className="py-2 px-4 text-center border-b">
         <button
-          onClick={()=>handleDelete(e?._id)}
-          className=" py-1 px-3 rounded hover:bg-gray-300 focus:outline-none transform hover:scale-105 transition-transform"
+          onClick={()=>handleDelete(post?._id)}
+          className="deleteBtn py-1 px-3 rounded hover:bg-gray-300 focus:outline-none transform hover:scale-105 transition-transform"
         >
           <box-icon name='trash' type='solid' color='#ff0000'/>
         </button>

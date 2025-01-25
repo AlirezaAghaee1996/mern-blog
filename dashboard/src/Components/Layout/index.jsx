@@ -1,7 +1,10 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Utils/AuthContext';
 
 const Layout = () => {
+  const {handleAuth}=useContext(AuthContext)
+  const navigate=useNavigate()
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -26,6 +29,9 @@ const Layout = () => {
             Categories
           </Link>
         </nav>
+        <button onClick={()=>{handleAuth(null,null)
+          navigate('/login')
+        }} className='bg-red-500 text-white px-6 py-2 rounded-md mx-auto block'>LogOut</button>
       </div>
 
       {/* Main Content */}

@@ -50,3 +50,15 @@ export const updateUser = catchAsync(async (req, res, next) => {
     success: true,
   });
 });
+
+export const deleteUser = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  if(req.role!=='admin' && req.userId !=id){
+    return next(new HandleERROR("you don't have permission",401))
+  }
+  let user=await User.findByIdAndDelete(id)
+  return res.status(200).json({
+    success: true,
+    message:'remove account successfully'
+  });
+});
