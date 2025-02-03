@@ -3,10 +3,11 @@ import ApiFeatures from "../Utils/apiFeatures.js";
 import catchAsync from "../Utils/catchAsync.js";
 export const createComment = catchAsync(async (req, res, next) => {
   const userId = req.userId;
-  const comment = await Comment.create({ ...req.body, userId });
+  console.log(req.body)
+  const {isActive=null,...others}=req.body
+  const comment = await Comment.create({ ...others, userId });
   return res.status(201).json({
     message: "comment created successfully",
-    data: comment,
     success: true,
   });
 });
@@ -46,6 +47,8 @@ export const getCommentsPost = catchAsync(async (req, res, next) => {
 });
 export const changeActiveComment = catchAsync(async (req, res, next) => {
   const { id } = req.params;
+  console.log(req.body)
+  console.log(id)
   const comment = await Comment.findByIdAndUpdate(id, {isActive:req.body.isActive}, {
     new: true,
     runValidators: true,

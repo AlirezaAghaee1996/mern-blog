@@ -18,7 +18,7 @@ export default function Navbar() {
 
   const items = categories?.map((e, index) => (
     <li key={index} className="hover:text-[#DCD7C9] transition duration-200">
-      <Link to={`/posts/${e._id}/${e.title.replaceAll(" ", "-")}`}>{e.title}</Link>
+      <Link to={`/posts/${e._id}/${e.title.toLowerCase().replaceAll(" ", "-")}`}>{e.title}</Link>
     </li>
   ));
 
@@ -38,11 +38,11 @@ export default function Navbar() {
           <li className="hover:text-[#DCD7C9] transition duration-200">
             <Link to="/posts/all/all-category">Posts</Link>
           </li>
-          <li className="relative group">
+          <li className="relative group h-[100%]">
             <span className="cursor-pointer hover:text-[#DCD7C9] transition duration-200">
               Categories
             </span>
-            <ul className="absolute hidden group-hover:block bg-[#2C3639] text-sm rounded shadow-lg mt-2 py-2">
+            <ul className="absolute hidden group-hover:block py-3 top-[60%] px-5 bg-[#2C3639] text-sm rounded shadow-lg mt-2 py-2">
               {items?.length ? (
                 items
               ) : (

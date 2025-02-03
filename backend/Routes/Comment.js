@@ -4,6 +4,6 @@ import { changeActiveComment, createComment, deleteComment, getAllComments, getC
 import isLogin from '../Middleware/isLogin.js'
 const commentRouter=express.Router()
 commentRouter.route('/').get(isAdmin,getAllComments).post(isLogin,createComment)
-commentRouter.route('/post-comments').get(getCommentsPost)
+commentRouter.route('/post-comments/:id').get(getCommentsPost)
 commentRouter.route('/:id').get(isAdmin,getOneComment).delete(isAdmin,deleteComment).patch(isAdmin,changeActiveComment)
 export default commentRouter

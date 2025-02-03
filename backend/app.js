@@ -10,6 +10,7 @@ import commentRouter from './Routes/Comment.js'
 import categoryRouter from './Routes/Category.js'
 import uploadRouter from './Routes/upload.js'
 import cors from 'cors'
+import searchRouter from './Routes/search.js'
 
 
 
@@ -29,6 +30,7 @@ app.use('/api/users',userRouter)
 app.use('/api/comments',commentRouter)
 app.use('/api/categories',categoryRouter)
 app.use('/api/upload',uploadRouter)
+app.use('/api/search',searchRouter)
 
 
 app.use('*',(req,res,next)=>{

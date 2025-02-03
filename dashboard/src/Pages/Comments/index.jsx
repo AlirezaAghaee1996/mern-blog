@@ -40,6 +40,7 @@ export default function Comments() {
       method: "PATCH",
       headers: {
         authorization: `bearar ${token}`,
+        'content-type':'application/json'
       },
       body: JSON.stringify({ isActive: !isActive }),
     });
